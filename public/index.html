@@ -9,17 +9,31 @@
     <link rel="stylesheet" href="" />
   </head>
   <body>
+    <input type="text" id="input-field" />
+    <button id="button">send</button>
     <img id="image" height="500" />
     <script async defer>
-      fetch("/request-word")
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          console.log(data);
-          document.getElementById("image").src =
-            data.image.records[0].baseimageurl;
-        });
+      const inputField = document.getElementById("input-field");
+      const button = document.getElementById("button");
+
+      let word;
+
+      button.addEventListener("click", () => getData());
+
+      function getData() {
+        if (inputField.value == "") {
+          return;
+        } else {
+          word = inputField.value;
+          fetch(`/request-word/${word}`)
+            .then(response => {
+              return response.json();
+            })
+            .then(data => {
+              console.log(data);
+            });
+        }
+      }
     </script>
   </body>
 </html>
