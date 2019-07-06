@@ -1,0 +1,17 @@
+{
+  "name": "art_twitter_bot",
+  "version": "1.0.0",
+  "description": "a twitter bot that tweets out an image from harvards art museum api",
+  "main": "index.js",
+  "scripts": {
+    "mon": "nodemon index.js"
+  },
+  "author": "Dallas Oliver",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^1.19.1",
+    "twit": "^2.2.11"
+  }
+}
