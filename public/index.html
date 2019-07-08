@@ -11,10 +11,14 @@
   <body>
     <input type="text" id="input-field" />
     <button id="button">send</button>
-    <img id="image" height="500" />
+
+    <canvas id="canvas" width="400" height="400"></canvas>
     <script async defer>
       const inputField = document.getElementById("input-field");
       const button = document.getElementById("button");
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      inputField.value = "dog";
 
       let word;
 
@@ -27,10 +31,19 @@
           word = inputField.value;
           fetch(`/request-word/${word}`)
             .then(response => {
-              return response.json();
+              return response.blob();
             })
             .then(data => {
+              const myImage = new Image();
               console.log(data);
+
+              console.log(myImage.src);
+              imageURL = URL.createObjectURL(data);
+              myImage.src = imageURL;
+              console.log(myImage.src);
+              document.body.append(myImage);
+
+              // ctx.drawImage(myImage, 0, 0);
             });
         }
       }
