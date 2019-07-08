@@ -34,12 +34,11 @@ app.get("/request-word/:word", async (req, res) => {
   console.log(url);
 
   const url_data = await fetch(url);
+  const buffer = await url_data.buffer();
 
-  const img = await url_data.blob();
-
-  res.contentType("image/jpeg");
-  res.send(img);
+  res.end(buffer);
 });
+
 
 app.listen(3000, () => {
   console.log("listening on port 3000");
